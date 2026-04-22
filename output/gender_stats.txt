@@ -1,0 +1,4 @@
+MALE → 15
+FEMALE → 4
+UNKNOWN → 1
+GENDERLESS → 0

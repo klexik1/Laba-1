@@ -1,30 +1,26 @@
-package com.khalchukov.labs.util;
+package com.khalchukov.util;
 
-import com.khalchukov.labs.model.Character;
-import com.khalchukov.labs.model.Gender;
+import com.khalchukov.model.Character;
+import com.khalchukov.model.Gender;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Упрощенный парсер CSV без поддержки кавычек и экранирования.
- * Предполагает, что поля НЕ содержат запятых внутри.
- */
 public class CsvParser {
 
     private CsvParser() {}
 
-    /**
-     * Читает персонажей из файла, пропуская заголовок.
-     */
     public static List<Character> readAll(Path path) throws IOException {
         List<Character> characters = new ArrayList<>();
 
         try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
-            String line = reader.readLine(); // пропускаем заголовок
+            String line = reader.readLine();
             if (line == null) return characters;
 
             while ((line = reader.readLine()) != null) {
@@ -41,15 +37,9 @@ public class CsvParser {
         return characters;
     }
 
-    /**
-     * Разбирает одну строку CSV в объект Character.
-     * Упрощенный парсинг - просто split по запятой.
-     */
     private static Character parseLine(String line) {
-        // ПРОСТОЙ split без учета кавычек
-        String[] parts = line.split(",", -1); // -1 чтобы сохранить пустые поля в конце
+        String[] parts = line.split(",", -1);
 
-        // Очищаем каждое поле от лишних пробелов
         for (int i = 0; i < parts.length; i++) {
             parts[i] = parts[i].trim();
         }
@@ -68,16 +58,13 @@ public class CsvParser {
                 gender, originName, locationName, created);
     }
 
-    /**
-     * Записывает список персонажей в CSV-файл (с заголовком).
-     */
+
     public static void writeAll(Path path, List<Character> characters) throws IOException {
         try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
             writer.write(Character.csvHeader());
             writer.newLine();
 
             for (Character c : characters) {
-                // Упрощенная запись - просто соединяем запятыми
                 writer.write(String.join(",",
                         String.valueOf(c.getId()),
                         c.getName(),

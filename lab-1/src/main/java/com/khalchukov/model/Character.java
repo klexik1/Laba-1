@@ -1,11 +1,6 @@
-package com.khalchukov.labs.model;
+package com.khalchukov.model;
 
-/**
- * Модель персонажа из Rick and Morty.
- * Поля соответствуют столбцам CSV-файла.
- */
 public class Character {
-
     private int    id;
     private String name;
     private String status;
@@ -15,8 +10,6 @@ public class Character {
     private String originName;
     private String locationName;
     private String created;
-
-    // ──────────────────── Конструкторы ────────────────────
 
     public Character() {}
 
@@ -34,15 +27,9 @@ public class Character {
         this.created      = created;
     }
 
-    // ──────────────────── CSV-хелперы ────────────────────
-
-    /** Заголовок CSV. */
     public static String csvHeader() {
         return "id,name,status,species,type,gender,origin/name,location/name,created";
     }
-
-
-    // ──────────────────── toString ────────────────────
 
     @Override
     public String toString() {
@@ -50,32 +37,23 @@ public class Character {
                 id, name, gender, status);
     }
 
-    // ──────────────────── Getters / Setters ────────────────────
-
     public int getId()                       { return id; }
-    public void setId(int id)                { this.id = id; }
-
     public String getName()                  { return name; }
-    public void setName(String name)         { this.name = name; }
-
     public String getStatus()                { return status; }
-    public void setStatus(String status)     { this.status = status; }
-
     public String getSpecies()               { return species; }
-    public void setSpecies(String species)   { this.species = species; }
-
     public String getType()                  { return type; }
-    public void setType(String type)         { this.type = type; }
-
     public Gender getGender()                { return gender; }
-    public void setGender(Gender gender)     { this.gender = gender; }
-
     public String getOriginName()            { return originName; }
-    public void setOriginName(String o)      { this.originName = o; }
-
     public String getLocationName()          { return locationName; }
-    public void setLocationName(String l)    { this.locationName = l; }
-
     public String getCreated()               { return created; }
+
+    public void setId(int id)                { this.id = id; }
+    public void setName(String name)         { this.name = name; }
+    public void setStatus(String status)     { this.status = status; }
+    public void setSpecies(String species)   { this.species = species; }
+    public void setType(String type)         { this.type = type; }
+    public void setGender(Gender gender)     { this.gender = gender; }
+    public void setOriginName(String o)      { this.originName = o; }
+    public void setLocationName(String l)    { this.locationName = l; }
     public void setCreated(String created)   { this.created = created; }
 }
