@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="initial-tag" author="khalchukov">
+        <tagDatabase tag="v1.0.0-init"/>
+    </changeSet>
+
+    <include relativeToChangelogFile="true"
+             file="ddl/2026-04-22--create-table-smartphone.xml"/>
+
+</databaseChangeLog>
